@@ -5,11 +5,12 @@ CHOICES = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣' ]
 def main():
     code = set_code()
 
+
 # Computer sets the code the user has to guess
 def set_code():
     code = ''
     for v in range(4):
-        code = code + random.choice(CHOICES)
+        code += random.choice(CHOICES)
     return code
 
 
