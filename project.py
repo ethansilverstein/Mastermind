@@ -1,17 +1,35 @@
 import random
 import sys
 
-CHOICES = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣' ]
+CHOICES = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣']
 
 def main():
+    game = True
+    count = 0
+    
     print(introduction())
     code = set_code()
-    for v in range(10):
-        guess = input('Input your guess here: ')
-        if guess == code:
-            print(win_message())
-            sys.exit(0)
-    print(lose_message())
+    
+    while game == True:
+        try:
+            # TEMP!!!
+            code = '🔴🔴🔴🔴'
+            count += 1
+            guess = input('Input your guess here: ')
+            if guess == code:
+                count = 0
+                print(win_message())
+                game = False
+            if count == 10:
+                sys.exit(lose_message())
+            for i in guess:
+                if not i in CHOICES:
+                    raise ValueError
+            check_code(code, guess)
+        except ValueError:
+            count -= 1
+            print('Enter a valid code with the colors from the choices')
+            pass
     
     
 
@@ -23,19 +41,29 @@ def set_code():
         code += random.choice(CHOICES)
     return code
 
-def check_code():
-    ...
+def check_code(code, guess):
+    black = 0
+    white = 0
+    for i in code:
+        for j in guess:
+            if i == j:
+                black += 1
+                white -= 1
+            elif j in code:
+                white += 1
+    return f'You have {black} colors that are in the code and are in the right position.\nYou have {white} colors that are in the code but are in the wrong position.'
+        
 
 
 
 def introduction():
-    return 'Welcome to Mastermind!\nAs the codemaker, the computer will set a random code made up of four different colors.\nAs the codebreaker, you must try to break the code!\nComputer will provide hints after every guess.\nGuess the code within 10 tries to become the mastermind'
+    return 'Welcome to Mastermind!\nAs the codemaker, the computer will set a random code made up of four different colors.\nThe colors to choose from are: "🔴", "🟠", "🟡", "🟢", "🔵", and "🟣"\nAs the codebreaker, you must try to break the code!\nComputer will provide hints after every guess.\nGuess the code within 10 tries to become the mastermind'
 
 def win_message():
     return 'You managed to break the code! You are the mastermind!'
 
 def lose_message():
-    return 'Codemaker'
+    return 'You have lost to the codemaker :('
 
 
 if __name__ == '__main__':
