@@ -12,10 +12,9 @@ def main():
     
     while game == True:
         try:
-            # TEMP!!!
-            code = '🔴🔴🔴🔴'
             count += 1
-            guess = input('Input your guess here: ')
+            guess = input('Input your guess here: ').strip()
+            print(check_code(code, guess))
             if guess == code:
                 count = 0
                 print(win_message())
@@ -25,7 +24,6 @@ def main():
             for i in guess:
                 if not i in CHOICES:
                     raise ValueError
-            check_code(code, guess)
         except ValueError:
             count -= 1
             print('Enter a valid code with the colors from the choices')
@@ -44,13 +42,14 @@ def set_code():
 def check_code(code, guess):
     black = 0
     white = 0
-    for i in code:
-        for j in guess:
-            if i == j:
+    for c, g in zip(code, guess):
+            if c == g:
                 black += 1
                 white -= 1
-            elif j in code:
-                white += 1
+    for g in guess:
+        if g in code:
+            white += 1
+            
     return f'You have {black} colors that are in the code and are in the right position.\nYou have {white} colors that are in the code but are in the wrong position.'
         
 
