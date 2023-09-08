@@ -9,7 +9,6 @@ def main():
     
     print(introduction())
     code = set_code()
-    code = 'YRRB'
     while game:
         try:
             count += 1
@@ -21,11 +20,7 @@ def main():
                 break
             if count == 10:
                 sys.exit(lose_message())
-            for i in guess:
-                if not i in CHOICES:
-                    raise ValueError
-            if len(guess) != len(code):
-                raise ValueError
+            check_code(code, guess)
             print(check_code(code, guess))
         except ValueError:
             count -= 1
@@ -58,6 +53,14 @@ def check_code(code, guess):
             code_copy.remove(g)
                 
     return f'You have {black} colors that are in the code and are in the right position.\nYou have {white} colors that are in the code but are in the wrong position.'
+
+# Checks if code is valid
+def valid(code, guess):
+    for i in guess:
+        if not i in CHOICES:
+            raise ValueError
+        if len(guess) != len(code):
+            raise ValueError
         
 
 
