@@ -9,11 +9,11 @@ def main():
     
     print(introduction())
     code = set_code()
-    code = 'RRYY'
+    code = 'YRRB'
     while game:
         try:
             count += 1
-            guess = input('Input your guess here: ').strip()
+            guess = input('Input your guess here: ').strip().upper()
             if guess == code:
                 count = 0
                 print(win_message())
@@ -24,10 +24,12 @@ def main():
             for i in guess:
                 if not i in CHOICES:
                     raise ValueError
+            if len(guess) != len(code):
+                raise ValueError
             print(check_code(code, guess))
         except ValueError:
             count -= 1
-            print('Enter a valid code with the colors from the choices')
+            print('Enter a valid code')
             pass
     
     
@@ -42,6 +44,7 @@ def set_code():
 
 def check_code(code, guess):
     checked = []
+    code_copy = list(code)
     black = 0
     white = 0
     for c, g in zip(code, guess):
@@ -49,8 +52,10 @@ def check_code(code, guess):
             black += 1
             checked.append(g)
     for g in guess:
-        if g in code and g not in checked:
-            white += 1
+        if g in code_copy:
+            if g not in checked:
+                white += 1
+            code_copy.remove(g)
                 
     return f'You have {black} colors that are in the code and are in the right position.\nYou have {white} colors that are in the code but are in the wrong position.'
         
