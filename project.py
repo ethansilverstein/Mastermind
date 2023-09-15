@@ -20,7 +20,11 @@ def main():
                 game = False
                 break
             if count == 10:
-                sys.exit(lose_message())
+                print(lose_message)
+                print(f'The code was {code}')
+                game = False
+                break
+            valid(code, guess)
             check_code(code, guess)
             print(check_code(code, guess))
         except ValueError:
