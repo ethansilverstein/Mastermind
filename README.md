@@ -6,3 +6,9 @@ This project is based on the board game Mastermind. The board game plays like th
     
 In this version of the game, the computer is the codemaker and it sets up a 4 color code using letters to represent the colors. Those colors are Red (R), Orange (O), Yellow (Y), Green (G), Blue (B), and Purple (P). The user is the codebreaker and the user tries to guess the code using the letters. After that, the computer outputs hints like in the original board game. The user gets 10 tries to fully guess the whole code and become the Mastermind. Any invalid codes do not count towards the 10 tries and it reprompts the user to input a valid code.
 
+#### Explanation of files:
+
+.gitignore: I made this file to make sure that I don't upload any files that I don't want on the repo like __pycache__ or .pytest_cache
+project.py: The main file of my project. Contains all the main logic of the project.
+README.md: The file right here, an explanation of my project and how it works.
+test_project.py: This file contains the tests for the functions in my main file, project.py
