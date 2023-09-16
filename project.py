@@ -14,6 +14,7 @@ def main():
         try:
             count += 1
             guess = input("Input your guess here: ").strip().upper()
+            code = 'RRGB' #TEMP
             if guess == code:
                 count = 0
                 print(win_message())
