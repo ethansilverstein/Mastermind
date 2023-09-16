@@ -19,8 +19,7 @@ def main():
                 game = False
                 break
             if count == 10:
-                print(lose_message)
-                print(f'The code was {code}')
+                print(f'{lose_message()}\nThe code was {code}')
                 game = False
                 break
             valid(code, guess)
@@ -65,6 +64,8 @@ def valid(code, guess):
             raise ValueError
         if len(guess) != len(code):
             raise ValueError
+    if guess == '':
+        raise ValueError
 
 
 def introduction():
