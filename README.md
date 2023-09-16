@@ -8,7 +8,7 @@ In this version of the game, the computer is the codemaker and it sets up a 4 co
 
 #### Explanation of files:
 
-.gitignore: I made this file to make sure that I don't upload any files that I don't want on the repo like __pycache__ or .pytest_cache
+.gitignore: I made this file to make sure that I don't upload any files that I don't want on the repo like \__pycache__ or .pytest_cache
 
 project.py: The main file of my project. Contains all the main logic of the project.
 
